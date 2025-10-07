@@ -22,9 +22,16 @@ namespace apiConsole
         public MainWindow()
         {
             InitializeComponent();
+            UpdateStatusBar();
         }
 
-        private void Refresh()
+        private void UpdateStatusBar()
+        {
+            statusBar.SetCount(messurments.Count);
+            statusBar.SetSaved(true);
+		}
+
+		private void Refresh()
         {
             listBox.Items.Clear();
 
@@ -32,8 +39,10 @@ namespace apiConsole
             foreach (var item in messurments.OrderBy(x => x.Time))
             {
                 listBox.Items.Add(item.ToString());
+                
             }
-            ;
+            UpdateStatusBar()
+			;
         }
 		private void btnAdd_Click(object sender, RoutedEventArgs e)
 		{
